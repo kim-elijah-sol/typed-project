@@ -134,6 +134,31 @@ const S = {
       max-height: 100%;
     }
   `,
+  UrlAddButtonWrapper: styled.div`
+    position: relative;
+    width: 100%;
+  `,
+  Input: styled.input`
+    width: 100%;
+    height: 30px;
+    padding: 8px;
+    background-color: ${palette.gray_97};
+    border: 1px solid ${palette.system_blue};
+    border-radius: 3px;
+    font-size: 14px;
+  `,
+  UrlInputWrapper: styled.div`
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 260px;
+    transform: translateY(2px);
+    background-color: ${palette.gray_100};
+    border: 1px solid ${palette.gray_90};
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+  `,
 } as const
 
 export default S

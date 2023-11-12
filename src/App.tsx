@@ -1,4 +1,5 @@
 import ResourceList from 'components/ResourceList'
+import UrlAddButton from 'components/UrlAddButton'
 import S from 'style/styled'
 
 function App() {
@@ -6,7 +7,7 @@ function App() {
     <S.Container>
       <S.Aside>
         <S.AsideTop>
-          <S.Button>URL 추가</S.Button>
+          <UrlAddButton />
           <S.Button>이미지 추가</S.Button>
         </S.AsideTop>
 
