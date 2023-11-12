@@ -87,7 +87,7 @@ const S = {
   ResourceList: styled.ul`
     list-style: none;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 10px;
     padding: 10px;
     max-height: calc(100% - 50px);
