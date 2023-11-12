@@ -37,7 +37,7 @@ function UrlAddButton() {
       return
     }
 
-    createUrlResourceMutation.mutate($input.current.value)
+    createUrlResourceMutation.mutate($input.current.value.trim())
   }
 
   useEffect(() => {
