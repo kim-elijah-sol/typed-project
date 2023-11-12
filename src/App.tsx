@@ -1,3 +1,4 @@
+import ImageUploadButton from 'components/ImageUploadButton'
 import ResourceList from 'components/ResourceList'
 import UrlAddButton from 'components/UrlAddButton'
 import S from 'style/styled'
@@ -8,7 +9,7 @@ function App() {
       <S.Aside>
         <S.AsideTop>
           <UrlAddButton />
-          <S.Button>이미지 추가</S.Button>
+          <ImageUploadButton />
         </S.AsideTop>
 
         <ResourceList />
