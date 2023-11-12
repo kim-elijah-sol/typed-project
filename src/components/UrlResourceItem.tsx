@@ -17,15 +17,20 @@ function UrlResourceItem({ id, url }: Props) {
 
   const [isEditing, setIsEditing] = useState(false)
 
-  const { editResource, selectedResourceId, setSelectedResourceId } =
-    useResourceStore(
-      (state) => ({
-        editResource: state.editResource,
-        selectedResourceId: state.selectedResourceId,
-        setSelectedResourceId: state.setSelectedResourceId,
-      }),
-      shallow
-    )
+  const {
+    editResource,
+    removeResource,
+    selectedResourceId,
+    setSelectedResourceId,
+  } = useResourceStore(
+    (state) => ({
+      editResource: state.editResource,
+      removeResource: state.removeResource,
+      selectedResourceId: state.selectedResourceId,
+      setSelectedResourceId: state.setSelectedResourceId,
+    }),
+    shallow
+  )
 
   const updateUrlResourceMutation = useMutation({
     mutationFn: updateUrlResource,
@@ -66,6 +71,12 @@ function UrlResourceItem({ id, url }: Props) {
     setIsEditing(true)
   }
 
+  function handleClickRemove(e: React.MouseEvent<HTMLButtonElement>) {
+    e.stopPropagation()
+    removeResource(id)
+    toast.success('URL 리소스가 삭제되었어요.')
+  }
+
   useEffect(() => {
     if (isEditing) {
       $input.current?.focus()
@@ -86,7 +97,7 @@ function UrlResourceItem({ id, url }: Props) {
         <S.IconButton onClick={handleClickEdit}>
           <TypedIcon icon='edit_19' size={19} />
         </S.IconButton>
-        <S.IconButton>
+        <S.IconButton onClick={handleClickRemove}>
           <TypedIcon icon='trash_19' size={19} />
         </S.IconButton>
       </S.ResourceItemBottom>

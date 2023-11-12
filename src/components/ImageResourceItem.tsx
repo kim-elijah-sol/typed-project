@@ -14,15 +14,20 @@ interface Props extends ImageResource {
 function ImageResourceItem({ id, fileName }: Props) {
   const $input = useRef<HTMLInputElement>(null)
 
-  const { editResource, selectedResourceId, setSelectedResourceId } =
-    useResourceStore(
-      (state) => ({
-        editResource: state.editResource,
-        selectedResourceId: state.selectedResourceId,
-        setSelectedResourceId: state.setSelectedResourceId,
-      }),
-      shallow
-    )
+  const {
+    editResource,
+    removeResource,
+    selectedResourceId,
+    setSelectedResourceId,
+  } = useResourceStore(
+    (state) => ({
+      editResource: state.editResource,
+      removeResource: state.removeResource,
+      selectedResourceId: state.selectedResourceId,
+      setSelectedResourceId: state.setSelectedResourceId,
+    }),
+    shallow
+  )
 
   const updateImageResourceMutation = useMutation({
     mutationFn: updateImageResource,
@@ -50,6 +55,12 @@ function ImageResourceItem({ id, fileName }: Props) {
     updateImageResourceMutation.mutate(files[0])
   }
 
+  function handleClickRemove(e: React.MouseEvent<HTMLButtonElement>) {
+    e.stopPropagation()
+    removeResource(id)
+    toast.success('이미지 리소스가 삭제되었어요.')
+  }
+
   return (
     <>
       <S.ResourceItem
@@ -61,7 +72,7 @@ function ImageResourceItem({ id, fileName }: Props) {
           <S.IconButton onClick={handleClickEdit}>
             <TypedIcon icon='edit_19' size={19} />
           </S.IconButton>
-          <S.IconButton>
+          <S.IconButton onClick={handleClickRemove}>
             <TypedIcon icon='trash_19' size={19} />
           </S.IconButton>
         </S.ResourceItemBottom>
