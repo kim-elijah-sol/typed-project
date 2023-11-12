@@ -3,6 +3,7 @@ import {
   getRandomSuccess,
   randomDelay,
 } from 'shared/function'
+import { convertFileToReaderResult } from 'shared/function/convertFileToReaderResult'
 import { ImageResource } from 'state/useResourceStore'
 
 export async function createImageResource(file: File): Promise<ImageResource> {
@@ -16,27 +17,15 @@ export async function createImageResource(file: File): Promise<ImageResource> {
     throw new Error('이미지 리소스를 생성하는데 실패했어요.')
   }
 
-  return new Promise<ImageResource>((resolve, reject) => {
-    const reader = new FileReader()
+  const result = await convertFileToReaderResult(file)
 
-    reader.onload = () => {
-      const src = reader.result?.toString()
+  if (result === null) {
+    throw new Error('이미지 리소스를 생성하는데 실패했어요.')
+  }
 
-      if (src) {
-        resolve({
-          type: 'image',
-          fileName: file.name,
-          src,
-        })
-      } else {
-        reject(new Error('이미지 리소스를 생성하는데 실패했어요.'))
-      }
-    }
-
-    reader.onerror = () => {
-      reject(new Error('이미지 리소스를 생성하는데 실패했어요.'))
-    }
-
-    reader.readAsDataURL(file)
-  })
+  return {
+    type: 'image',
+    fileName: file.name,
+    src: result.toString(),
+  }
 }
