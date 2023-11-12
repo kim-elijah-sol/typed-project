@@ -89,7 +89,7 @@ function UrlResourceItem({ id, url }: Props) {
       onClick={() => setSelectedResourceId(id)}
     >
       {isEditing ? (
-        <S.Input ref={$input} defaultValue={url} {...userSubmitAction} />
+        <S.EditInput ref={$input} defaultValue={url} {...userSubmitAction} />
       ) : (
         <S.ResourceItemTop>{url}</S.ResourceItemTop>
       )}

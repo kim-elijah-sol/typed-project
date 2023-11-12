@@ -7,6 +7,16 @@ const ShadowTop = styled.div`
   box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
 `
 
+const Input = styled.input`
+  width: 100%;
+  height: 30px;
+  padding: 8px;
+  background-color: ${palette.gray_97};
+  border: 1px solid ${palette.system_blue};
+  border-radius: 3px;
+  font-size: 14px;
+`
+
 const S = {
   Aside: styled.aside`
     width: 280px;
@@ -138,14 +148,10 @@ const S = {
     position: relative;
     width: 100%;
   `,
-  Input: styled.input`
-    width: 100%;
-    height: 30px;
-    padding: 8px;
-    background-color: ${palette.gray_97};
-    border: 1px solid ${palette.system_blue};
-    border-radius: 3px;
-    font-size: 14px;
+  Input,
+  EditInput: styled(Input)`
+    width: 250px;
+    transform: translate(-8px, -8px);
   `,
   UrlInputWrapper: styled.div`
     position: absolute;
