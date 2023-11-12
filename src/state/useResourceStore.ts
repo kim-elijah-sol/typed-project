@@ -21,7 +21,7 @@ type ResourceStore = {
     urlResource: Omit<UrlResource, 'type'> | Omit<ImageResource, 'type'>
   ) => void
   removeResource: (id: number) => void
-  selctedResourceId: number | null
+  selectedResourceId: number | null
   setSelectedResourceId: (selctedResourceId: number | null) => void
 }
 
@@ -57,10 +57,10 @@ const useResourceStore = create<ResourceStore>((set) => ({
     set((state) => ({
       resources: state.resources.filter((resource) => resource.id !== id),
     })),
-  selctedResourceId: null,
-  setSelectedResourceId: (selctedResourceId) =>
+  selectedResourceId: null,
+  setSelectedResourceId: (selectedResourceId) =>
     set(() => ({
-      selctedResourceId,
+      selectedResourceId,
     })),
 }))
 
