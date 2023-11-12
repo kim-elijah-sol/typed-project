@@ -1,6 +1,7 @@
 import ImageUploadButton from 'components/ImageUploadButton'
 import ResourceList from 'components/ResourceList'
 import UrlAddButton from 'components/UrlAddButton'
+import Viewer from 'components/Viewer'
 import S from 'style/styled'
 
 function App() {
@@ -14,6 +15,8 @@ function App() {
 
         <ResourceList />
       </S.Aside>
+
+      <Viewer />
     </S.Container>
   )
 }
