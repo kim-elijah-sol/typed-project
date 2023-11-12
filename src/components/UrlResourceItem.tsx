@@ -1,4 +1,5 @@
-import { UrlResource } from 'state/useResourceStore'
+import { shallow } from 'zustand/shallow'
+import useResourceStore, { UrlResource } from 'state/useResourceStore'
 import S from 'style/styled'
 import { TypedIcon } from 'typed-design-system'
 
@@ -6,9 +7,20 @@ interface Props extends UrlResource {
   id: number
 }
 
-function UrlResourceItem({ url }: Props) {
+function UrlResourceItem({ id, url }: Props) {
+  const { selectedResourceId, setSelectedResourceId } = useResourceStore(
+    (state) => ({
+      selectedResourceId: state.selectedResourceId,
+      setSelectedResourceId: state.setSelectedResourceId,
+    }),
+    shallow
+  )
+
   return (
-    <S.ResourceItem>
+    <S.ResourceItem
+      active={selectedResourceId === id}
+      onClick={() => setSelectedResourceId(id)}
+    >
       <S.ResourceItemTop>{url}</S.ResourceItemTop>
       <S.ResourceItemBottom>
         <S.IconButton>
